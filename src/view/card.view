@@ -1,0 +1,16 @@
+<html>
+
+	{{ View( 'head.view' ) }}
+
+	<?prg
+		LOCAL hData 	:= PValue(1)
+		LOCAL cHtml 	:= ''
+	
+		cHtml += '<h3>' + hData[ 'titulo' ] + '</h3>'
+		cHtml += '<h5>' + hData[ 'texto' ] + '</h5>'
+
+	  
+	    retu cHtml
+	?>
+	
+</html>

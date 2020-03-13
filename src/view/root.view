@@ -1,0 +1,36 @@
+<html>
+
+	{{ View( 'head.view' ) }}
+
+	<?prg
+		LOCAL hData 	:= PValue(1)
+		LOCAL cHtml 	:= ''
+		LOCAL nI
+		
+		FOR nI := 1 TO len( hData[ 'rows' ] )
+			cHtml += valtochar( hData[ 'rows'][ nI ] ) + '<br>'
+			
+			cHtml += '<form action="{{ Route( 'read' ) }}" method="GET">'
+			cHtml += '	<button type="submit" name="recno" value="' + ltrim(str( hData[ 'rows'][ nI ][ '_recno'] )) + '">Read</button>'
+			cHtml += '</form>'
+			cHtml += '<hr>'
+			
+		NEXT
+	  
+	    retu cHtml
+	?>
+	
+	<br>Last Recno = {{ PARAM 1, 'recno' }} 
+	
+	<form action="{{ Route( 'root' ) }}" method="POST">
+		<input type="hidden" name="recno" value="{{ PARAM 1, 'recno' }}">		
+		<input type="submit" name="action" value="prev" >
+		<input type="submit" name="action" value="Next" >
+		<input type="submit" name="action" value="gotop" >
+		<input type="submit" name="action" value="gobottom" >
+		<input type="submit" name="action" value="buscar" >
+		<input type="search" id="buscar" name="search">
+
+	</form>
+	
+</html>
